@@ -5,9 +5,9 @@ from django.views.generic import TemplateView
 
 # Create your views here.
 class MyLoginview(LoginView):
-    template_name = 'main/login.html'
+    template_name = "main/login.html"
 class DashboardView(LoginRequiredMixin,TemplateView):
-    template_name = 'main/dashborad.html'
+    template_name = "main/dashboard.html"
     login_url = "/login/"
 class MyLogoutView(LogoutView):
-    next_page = '/login'
+    next_page = '/login/'
