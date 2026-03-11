@@ -6,7 +6,10 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>well come to this page</h1>
-    <a href="/logout/">logout</a>
+    <form action="" method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit">register</button>
+    </form>
 </body>
 </html>
