@@ -4,6 +4,7 @@ from django.views.generic import FormView
 from django.contrib.auth.views import LoginView,LogoutView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import TemplateView
+from django.views import generic
 # Create your views here.
 class RegisterView(FormView):
     template_name = "main/register.html"
@@ -14,9 +15,16 @@ class RegisterView(FormView):
         return super().form_valid(form)
 class MyLoginView(LoginView):
     template_name = "main/login.html"
-    def get_success_url(self):
-        return "home"
-class HomeView(LoginRequiredMixin,TemplateView):
+    success_url = "/"
+class HomeView(LoginRequiredMixin,generic.detail):
+    
     template_name = 'main/home.html'
 class MyLogoutView(LogoutView):
-    next_page = "/login/"
+    template_name = "main/logout.html"
+
+class student(generic.DetailView):
+    
+    def get_object(self, queryset = ...):
+        self.request
+
+    
