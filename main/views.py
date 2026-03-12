@@ -19,8 +19,21 @@ class MyLoginView(LoginView):
     success_url = "/"
 class HomeView(LoginRequiredMixin,generic.DetailView):
     template_name = 'main/home.html'
+    def get(self,request,*args,**kwargs):
+        subjects = ['mathematics','physics','chemistry','english','python','logic']
+        for subject in subjects:
+            course = Courses.objects.create(
+                course_name = subject,
+                usernames =self.request.user)
+            assessment.objects.create(
+                course = course,
+                usernames = self.request.user
+            )
+            return super().get(request,*args,**kwargs)
+        
 class MyLogoutView(LogoutView):
     template_name = "main/logout.html"
+    
 
 
     
