@@ -5,6 +5,7 @@ from django.contrib.auth.views import LoginView,LogoutView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import TemplateView
 from django.views import generic
+from .models import Courses,assessment
 # Create your views here.
 class RegisterView(FormView):
     template_name = "main/register.html"
@@ -16,15 +17,10 @@ class RegisterView(FormView):
 class MyLoginView(LoginView):
     template_name = "main/login.html"
     success_url = "/"
-class HomeView(LoginRequiredMixin,generic.detail):
-    
+class HomeView(LoginRequiredMixin,generic.DetailView):
     template_name = 'main/home.html'
 class MyLogoutView(LogoutView):
     template_name = "main/logout.html"
 
-class student(generic.DetailView):
-    
-    def get_object(self, queryset = ...):
-        self.request
 
     
