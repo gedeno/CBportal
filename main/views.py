@@ -80,7 +80,7 @@ class Update(generic.UpdateView):
     template_name = "main/update.html"
     queryset = assessment.objects.all()
     form_class = AssForm
-    success_url = '/'
+    success_url = '/teach'
 
 class MyLogoutView(LogoutView):
     template_name = "main/logout.html"
