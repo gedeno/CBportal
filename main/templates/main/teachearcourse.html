@@ -6,6 +6,13 @@
     <title>Document</title>
 </head>
 <body>
-    
+    <div>
+        {% for course in courses %}
+        <div>
+            <a href="{% url 'coursedetail' course.id %}">{{course}}</a>
+        </div>
+            
+        {% endfor %}
+    </div>
 </body>
 </html>

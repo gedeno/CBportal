@@ -17,11 +17,21 @@ class Teacher(generic.ListView):
     context_object_name = 'stud'
 class Teachercourse(generic.ListView):
     template_name = "main/teachearcourse.html"
-    context_object_name = 'course'
+    context_object_name = 'courses'
     def get_queryset(self):
         return Courses.objects.filter(usernames=self.request.user)
+class Teachercoursedetail(DetailView):
+    model = Courses
+    template_name = 'main/coursedetail.html'
+    queryset = Courses.objects.all()
+    def get_course(self):
+        return get_object_or_404(Courses,pk=self.kwargs['pk'])
+    
+    def get_request(self,**kwargs):
+        context = super().get_context_data(**kwargs)
+        context['assesment'] = assessment.objects.get(course =self.get_request())
 
-
+        return context
 
 class RegisterView(FormView):
     template_name = "main/register.html"
