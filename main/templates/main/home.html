@@ -9,7 +9,12 @@
     <form action="{% url 'logout' %}" method="post">
         {%csrf_token%}
         <h1>well come to ASTU portal</h1>
-        <button type="submit">logout</a>
+        <button type="submit">logout</button>
     </form>
+    {% for course in courses %}
+        <div>
+            <a href="{% url 'detail' course.id %}">{{ course }}</a>
+        </div>
+    {% endfor %}
 </body>
 </html>

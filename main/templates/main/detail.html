@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <div>
+            <p>quiz1 {{assesment.quiz1}}</p>
+            <p>quiz2 {{assesment.quiz2}}</p>
+            <p>assignment1 {{assesment.assignment1}}</p>
+            <p>assignment2 {{assesment.assignment2}}</p>
+            <p>mid_exam {{assesment.mid_exam}}</p>
+            <p>final_exam {{assesment.final_exam}}</p>
+            <div>
+                <a href="{% url 'update' assesment.id %}">Update</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
