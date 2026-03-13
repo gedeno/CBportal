@@ -15,6 +15,12 @@ class Teacher(generic.ListView):
     template_name = 'main/teacher.html'
     queryset = User.objects.all()
     context_object_name = 'stud'
+class Teachercourse(generic.ListView):
+    template_name = "main/teachearcourse.html"
+    context_object_name = 'course'
+    def get_queryset(self):
+        return Courses.objects.filter(usernames=self.request.user)
+
 
 
 class RegisterView(FormView):

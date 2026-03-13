@@ -9,9 +9,10 @@
     <div>
         {% for st in stud %}
             <div>
-                <a href="{% url 'stud' st.id %}">{{st.username}}</a>
+                <a href="{% url 'teachcourse' st.id %}">{{st.username}}</a>
             </div>
         {% endfor %}
+        
     </div>
 </body>
 </html>
