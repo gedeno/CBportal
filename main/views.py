@@ -24,12 +24,13 @@ class Teachercoursedetail(DetailView):
     model = Courses
     template_name = 'main/coursedetail.html'
     queryset = Courses.objects.all()
+
     def get_course(self):
-        return get_object_or_404(Courses,pk=self.kwargs['pk'])
+        return get_object_or_404(Courses, pk=self.kwargs['pk'])
     
-    def get_request(self,**kwargs):
+    def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['assesment'] = assessment.objects.get(course =self.get_request())
+        context['assesment'] = assessment.objects.get(course=self.get_course())
 
         return context
 
