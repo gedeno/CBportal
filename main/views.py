@@ -24,16 +24,12 @@ class Teachercoursedetail(DetailView):
     model = Courses
     template_name = 'main/coursedetail.html'
     queryset = Courses.objects.all()
-
     def get_course(self):
-        return get_object_or_404(Courses, pk=self.kwargs['pk'])
-    
+        return get_object_or_404(Courses, pk=self.kwargs['pk']) 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['assesment'] = assessment.objects.get(course=self.get_course())
-
         return context
-
 class RegisterView(FormView):
     template_name = "main/register.html"
     form_class = UserCreationForm
@@ -48,10 +44,8 @@ class RegisterView(FormView):
                 usernames =user)
             assessment.objects.create(
                 course = course,
-                usernames = user
-            )
+                usernames = user )
         return super().form_valid(form)
-    
 class MyLoginView(LoginView):
     template_name = "main/login.html"
     success_url = "/"
@@ -60,28 +54,22 @@ class HomeView(LoginRequiredMixin, generic.ListView):
     context_object_name = 'courses'
     def get_queryset(self):
         return Courses.objects.filter(usernames=self.request.user)
-
 class CourseDetail(DetailView):
     model = Courses
     template_name = 'main/detail.html'
     queryset = Courses.objects.all()
-
     def get_course(self):
         return get_object_or_404(Courses, pk=self.kwargs['pk'])
-    
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['assesment'] = assessment.objects.get(course=self.get_course())
-
         return context
-    
 class Update(generic.UpdateView):
     model = assessment
     template_name = "main/update.html"
     queryset = assessment.objects.all()
     form_class = AssForm
     success_url = '/teach'
-
 class MyLogoutView(LogoutView):
     template_name = "main/logout.html"
 
