@@ -26,6 +26,7 @@ class Teachercoursedetail(DetailView):
     queryset = Courses.objects.all()
     def get_course(self):
         return get_object_or_404(Courses, pk=self.kwargs['pk']) 
+    
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['assesment'] = assessment.objects.get(course=self.get_course())
@@ -72,8 +73,3 @@ class Update(generic.UpdateView):
     success_url = '/teach'
 class MyLogoutView(LogoutView):
     template_name = "main/logout.html"
-
-
-
-
-    
